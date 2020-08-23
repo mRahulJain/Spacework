@@ -49,71 +49,16 @@
                 android:textColor="@android:color/black"
                 android:layout_gravity="center"
                 android:layout_marginBottom="30dp"
-                android:text="Add your product"
+                android:text="Delete your product"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <EditText
-                android:id="@+id/activity_add_product_name"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/blue_border_rounded_cornwe"
-                android:hint="PRODUCT NAME"
-                android:inputType="text"
-                android:maxLength="20"
-                android:paddingLeft="17dp"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
-                android:textSize="14sp"
-                android:textColor="#000000"
-                android:textCursorDrawable="@drawable/cursor_color" />
-            <EditText
-                android:layout_marginTop="17dp"
-                android:background="@drawable/blue_border_rounded_cornwe"
-                android:paddingLeft="17dp"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
-                android:textSize="14sp"
-                android:textColor="#000000"
-                android:id="@+id/activity_add_product_description"
-                android:textCursorDrawable="@drawable/cursor_color"
-                android:hint="PRODUCT DESCRIPTION"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <EditText
-                android:layout_marginTop="17dp"
-                android:background="@drawable/blue_border_rounded_cornwe"
-                android:paddingLeft="17dp"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
-                android:textSize="14sp"
-                android:textCursorDrawable="@drawable/cursor_color"
-                android:inputType="numberDecimal"
-                android:textColor="#000000"
-                android:id="@+id/activity_add_product_price"
-                android:hint="PRODUCT PRICE"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <EditText
-                android:layout_marginTop="17dp"
-                android:background="@drawable/blue_border_rounded_cornwe"
-                android:paddingLeft="17dp"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
-                android:textSize="14sp"
-                android:textCursorDrawable="@drawable/cursor_color"
-                android:textColor="#000000"
-                android:id="@+id/activity_add_product_imageLink"
-                android:hint="PRODUCT IMAGE LINK"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <FrameLayout
                 android:background="@drawable/blue_border_rounded_cornwe"
-                android:layout_marginTop="17dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <Spinner
                     android:background="@android:color/transparent"
-                    android:id="@+id/activity_add_product_productCategory"
+                    android:id="@+id/activity_delete_product_productCategory"
                     android:paddingLeft="7dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
@@ -124,16 +69,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </FrameLayout>
-            <CheckBox
-                android:textColor="#000000"
-                android:buttonTint="#c0d6f7"
-                android:text="Is available?"
-                android:textSize="19sp"
-                android:layout_marginLeft="5dp"
-                android:id="@+id/activity_add_product_isAvailable"
-                android:layout_marginTop="18.7dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+            <FrameLayout
+                android:background="@drawable/blue_border_rounded_cornwe"
+                android:layout_marginTop="17dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Spinner
+                    android:background="@android:color/transparent"
+                    android:id="@+id/activity_delete_product_productName"
+                    android:paddingLeft="7dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <ImageView
+                    android:layout_marginRight="7dp"
+                    android:layout_gravity="center|right"
+                    android:src="@drawable/ic_drop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </FrameLayout>
             <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -147,11 +100,11 @@
                 android:paddingTop="14dp"
                 android:textAllCaps="false"
                 android:paddingBottom="14dp"
-                android:id="@+id/activity_add_product_add"
+                android:id="@+id/activity_delete_product_delete"
                 android:layout_marginLeft="62dp"
                 android:layout_marginRight="62dp"
                 android:layout_marginTop="28.7dp"
-                android:text="ADD PRODUCT"
+                android:text="DELETE PRODUCT"
                 android:background="@drawable/blue_fill__rounded_color"/>
         </LinearLayout>
     </ScrollView>

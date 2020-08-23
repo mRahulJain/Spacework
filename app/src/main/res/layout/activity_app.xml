@@ -62,7 +62,7 @@
         android:layout_marginLeft="0dp"
         app:tabTextColor="#FFFFFF"
         app:tabSelectedTextColor="#FFFFFF"
-        app:tabIndicatorColor="#80FFFFFF"
+        app:tabIndicatorColor="#50000000"
         app:tabInlineLabel="true"
         android:layout_marginRight="0dp"
         android:layout_height="wrap_content" />

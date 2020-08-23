@@ -20,8 +20,8 @@ mongoClient.connect(url, {useNewUrlParser: true}, function(err,client) {
   } else {
 
     //--------------------------------------------------------------------------------------------------------//
-    //ADD PRODUCT
-    app.post('/add_product', (request, response)=>{
+    //POST PRODUCT
+    app.post('/add-product', (request, response)=>{
       var postData = request.body;
 
       var productId = `${postData.productId}`;
@@ -30,6 +30,7 @@ mongoClient.connect(url, {useNewUrlParser: true}, function(err,client) {
       var productPrice = `${postData.productPrice}`;
       var productIsAvailable = `${postData.productIsAvailable}`;
       var productImage = `${postData.productImage}`;
+      var productCategory = `${postData.productCategory}`;
 
       var insertJson = {
         productId: productId,
@@ -37,7 +38,8 @@ mongoClient.connect(url, {useNewUrlParser: true}, function(err,client) {
         productDescription: productDescription,
         productPrice: productPrice,
         productIsAvailable: productIsAvailable,
-        productImage: productImage
+        productImage: productImage,
+        productCategory: productCategory
       };
 
       var db = client.db('spacework');
@@ -56,6 +58,84 @@ mongoClient.connect(url, {useNewUrlParser: true}, function(err,client) {
     });
     //--------------------------------------------------------------------------------------------------------//
 
+
+    //--------------------------------------------------------------------------------------------------------//
+    //GET PRODUCT BY CATEGORY
+    app.get('/get-product-by-category', (request, response)=>{
+      var queryData = request.query;
+      var productCategory = `${queryData.productCategory}`;
+
+      var db = client.db('spacework');
+      db.collection('products').find({'productCategory': productCategory}).count(function(err,number){
+        if(number==0) {
+          response.json();
+          console.log('No such category exists');
+        } else {
+          db.collection('products').find({'productCategory': productCategory}).toArray(function(err,items){
+            response.json(items);
+            console.log('Success in getting products by category');
+          })
+        }
+      })
+    });
+    //--------------------------------------------------------------------------------------------------------//
+
+
+    //--------------------------------------------------------------------------------------------------------//
+    //PATCH PRODUCT
+    app.patch('/update-product', (request, response)=>{
+      var patchData = request.body;
+
+      var productName = `${patchData.productName}`;
+      var productDescription = `${patchData.productDescription}`;
+      var productPrice = `${patchData.productPrice}`;
+      var productIsAvailable = `${patchData.productIsAvailable}`;
+      var productImage = `${patchData.productImage}`;
+
+      var db = client.db('spacework');
+      db.collection('products').updateOne(
+        {
+          'productName': productName
+        },
+          {
+            $set:{
+              'productDescription': productDescription,
+              'productPrice': productPrice,
+              'productIsAvailable': productIsAvailable,
+              'productImage': productImage
+            }
+          },
+          function(err,res){
+            response.json("Product Updated");
+            console.log("Product Updated");
+          }
+        )
+      });
+      //--------------------------------------------------------------------------------------------------------//
+
+
+      //--------------------------------------------------------------------------------------------------------//
+      //DELETE PRODUCT
+      app.post("/delete-product",(request, response)=>{
+        var deleteData = request.body;
+
+        var productId = `${deleteData.productId}`;
+
+        var db = client.db('spacework');
+        db.collection('products').find({'productId': productId}).count(function(err,number){
+          if(number == 0) {
+            response.json("Product does not exist");
+            console.log("Product does not exist");
+          } else {
+            db.collection('products').deleteOne({'productId': productId}, function(err,res){
+              response.json("Delete Successfull");
+              console.log("Delete Successfull");
+            })
+          }
+        })
+
+      });
+      //--------------------------------------------------------------------------------------------------------//
 
     //START WEB SERVER
     // var port = process.env.PORT || 3000;

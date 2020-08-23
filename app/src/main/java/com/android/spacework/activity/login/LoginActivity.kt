@@ -1,4 +1,4 @@
-package com.android.spacework.activity
+package com.android.spacework.activity.login
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

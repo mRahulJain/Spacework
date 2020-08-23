@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.AdminActivity">
+    tools:context=".activity.admin.AdminActivity">
     <LinearLayout
         android:orientation="horizontal"
         android:background="#1566e0"
@@ -90,6 +90,22 @@
                 android:layout_marginRight="62dp"
                 android:layout_marginTop="18.7dp"
                 android:text="UPDATE PRODUCT"
+                android:background="@drawable/blue_fill__rounded_color"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="#ffffff"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:paddingTop="14dp"
+                android:textAllCaps="false"
+                android:paddingBottom="14dp"
+                android:id="@+id/activity_admin_deleteProduct"
+                android:layout_marginLeft="62dp"
+                android:layout_marginRight="62dp"
+                android:layout_marginTop="18.7dp"
+                android:text="DELETE PRODUCT"
                 android:background="@drawable/blue_fill__rounded_color"/>
         </LinearLayout>
     </ScrollView>

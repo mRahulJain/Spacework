@@ -12,11 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.AddProductActivity"></activity>
-        <activity android:name=".activity.AdminActivity" />
+        <activity android:name=".activity.admin.DeleteProductActivity"></activity>
+        <activity android:name=".activity.admin.UpdateProductActivity" />
+        <activity android:name=".activity.admin.AddProductActivity" />
+        <activity android:name=".activity.admin.AdminActivity" />
         <activity android:name=".activity.AppActivity" />
-        <activity android:name=".activity.OtpActivity" />
-        <activity android:name=".activity.LoginActivity">
+        <activity android:name=".activity.login.OtpActivity" />
+        <activity android:name=".activity.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

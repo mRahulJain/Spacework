@@ -14,9 +14,4 @@
         <item name="android:background">#1566e0</item>
     </style>
 
-    <style name="MyEditText" parent="Theme.AppCompat.Light">
-        <item name="colorControlNormal">@android:color/darker_gray</item>
-        <item name="colorControlActivated">#1ea5ff</item>
-    </style>
-
 </resources>

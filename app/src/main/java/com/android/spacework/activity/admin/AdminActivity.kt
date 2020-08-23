@@ -1,4 +1,4 @@
-package com.android.spacework.activity
+package com.android.spacework.activity.admin
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +13,16 @@ class AdminActivity : AppCompatActivity() {
 
         activity_admin_addProduct.setOnClickListener {
             val intent = Intent(this, AddProductActivity::class.java)
+            startActivity(intent)
+        }
+
+        activity_admin_updateProduct.setOnClickListener {
+            val intent = Intent(this, UpdateProductActivity::class.java)
+            startActivity(intent)
+        }
+
+        activity_admin_deleteProduct.setOnClickListener {
+            val intent = Intent(this, DeleteProductActivity::class.java)
             startActivity(intent)
         }
     }

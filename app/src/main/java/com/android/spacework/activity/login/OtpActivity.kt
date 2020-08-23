@@ -1,13 +1,12 @@
-package com.android.spacework.activity
+package com.android.spacework.activity.login
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.core.content.res.ResourcesCompat
 import com.android.spacework.R
+import com.android.spacework.activity.AppActivity
 import kotlinx.android.synthetic.main.activity_otp.*
-import www.sanju.motiontoast.MotionToast
 
 class OtpActivity : AppCompatActivity() {
 

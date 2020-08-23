@@ -1,7 +1,12 @@
 package com.android.spacework.Helper
 
+import android.app.Activity
+import android.content.Context
+import androidx.core.content.res.ResourcesCompat
+import com.android.spacework.R
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import www.sanju.motiontoast.MotionToast
 import java.security.MessageDigest
 import kotlin.experimental.and
 
@@ -20,5 +25,27 @@ class Constants {
 
     fun generateProductId(productName: String) : String {
         return EncryptHelper().hash(productName)
+    }
+
+    fun generateErrorToast(activity: Activity, context: Context, text: String) {
+        MotionToast.createColorToast(
+            activity,
+            text,
+            MotionToast.TOAST_ERROR,
+            MotionToast.GRAVITY_BOTTOM,
+            MotionToast.SHORT_DURATION,
+            ResourcesCompat.getFont(context, R.font.helvetica_regular)
+        )
+    }
+
+    fun generateSuccessToast(activity: Activity, context: Context, text: String) {
+        MotionToast.createColorToast(
+            activity,
+            text,
+            MotionToast.TOAST_SUCCESS,
+            MotionToast.GRAVITY_BOTTOM,
+            MotionToast.SHORT_DURATION,
+            ResourcesCompat.getFont(context, R.font.helvetica_regular)
+        )
     }
 }
