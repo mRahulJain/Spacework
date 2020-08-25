@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.AppActivity">
+    tools:context=".activity.user.AppActivity">
     <LinearLayout
         android:orientation="horizontal"
         android:background="#1566e0"
@@ -35,17 +35,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <ImageButton
-            android:id="@+id/activity_app_setting"
+            android:id="@+id/activity_app_profile"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/ic_setting"
+            android:src="@drawable/ic_person"
             android:padding="10dp"
             android:elevation="10dp"
-            android:layout_marginRight="2dp"
+            android:layout_marginRight="10dp"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <ImageButton
-            android:layout_marginRight="2dp"
+            android:visibility="gone"
+            android:layout_marginRight="10dp"
             android:id="@+id/activity_app_adminZone"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/ic_edit"

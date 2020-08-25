@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "835747806634",
+    "firebase_url": "https://spacework-spacework.firebaseio.com",
+    "project_id": "spacework-spacework",
+    "storage_bucket": "spacework-spacework.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:835747806634:android:fc05a879efbdd4dee37fd3",
+        "android_client_info": {
+          "package_name": "com.android.spacework"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "835747806634-drigi17vhb2bm8vql601enr3dlg6kkc9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGz7USieE5K6NIMHm6MuvDQeOmeymTHj4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "835747806634-drigi17vhb2bm8vql601enr3dlg6kkc9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

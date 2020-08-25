@@ -23,6 +23,13 @@ class Constants {
         .build()
 
 
+    val USER_INFO_PREFERENCE: String = "USER_INFO_PREFERENCE"
+    val USER_PHONENUMBER : String = "USER_EMAIL"
+    val USER_NAME : String = "USER_NAME"
+    val USER_ADDRESS: String = "USER_ADDRESS"
+    val USER_USERTYPE: String = "USER_USERTYPE"
+
+
     fun generateProductId(productName: String) : String {
         return EncryptHelper().hash(productName)
     }

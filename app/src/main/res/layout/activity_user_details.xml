@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.admin.AdminActivity">
+    tools:context=".activity.admin.AddProductActivity">
     <LinearLayout
         android:orientation="horizontal"
         android:background="#1566e0"
@@ -39,73 +39,64 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
-            android:padding="10dp"
             android:orientation="vertical"
+            android:padding="30dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <Button
+            <TextView
+                android:textSize="24dp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:layout_gravity="center"
+                android:layout_marginBottom="30dp"
+                android:text="Getting you completed..."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/activity_user_details_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/blue_border_rounded_cornwe"
+                android:hint="YOUR NAME"
+                android:inputType="text"
+                android:maxLength="20"
+                android:paddingLeft="17dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:textSize="14sp"
+                android:textColor="#000000"
+                android:textCursorDrawable="@drawable/cursor_color" />
+            <EditText
+                android:layout_marginTop="17dp"
+                android:background="@drawable/blue_border_rounded_cornwe"
+                android:paddingLeft="17dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:textSize="14sp"
+                android:textColor="#000000"
+                android:id="@+id/activity_user_details_address"
+                android:textCursorDrawable="@drawable/cursor_color"
+                android:hint="USER ADDRESS"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
                 android:textColor="#ffffff"
                 android:layout_gravity="center"
                 android:gravity="center"
+                app:spinning_bar_width="4dp"
+                app:spinning_bar_color="#FFFFFF"
+                app:spinning_bar_padding="4dp"
                 android:paddingTop="14dp"
                 android:textAllCaps="false"
                 android:paddingBottom="14dp"
-                android:id="@+id/activity_admin_orders"
+                android:id="@+id/activity_user_details_proceed"
                 android:layout_marginLeft="62dp"
                 android:layout_marginRight="62dp"
-                android:layout_marginTop="18.7dp"
-                android:text="VIEW ORDERS"
-                android:background="@drawable/blue_fill__rounded_color"/>
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:textColor="#ffffff"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:paddingTop="14dp"
-                android:textAllCaps="false"
-                android:paddingBottom="14dp"
-                android:id="@+id/activity_admin_addProduct"
-                android:layout_marginLeft="62dp"
-                android:layout_marginRight="62dp"
-                android:layout_marginTop="18.7dp"
-                android:text="ADD PRODUCT"
-                android:background="@drawable/blue_fill__rounded_color"/>
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:textColor="#ffffff"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:paddingTop="14dp"
-                android:textAllCaps="false"
-                android:paddingBottom="14dp"
-                android:id="@+id/activity_admin_updateProduct"
-                android:layout_marginLeft="62dp"
-                android:layout_marginRight="62dp"
-                android:layout_marginTop="18.7dp"
-                android:text="UPDATE PRODUCT"
-                android:background="@drawable/blue_fill__rounded_color"/>
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:textColor="#ffffff"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:paddingTop="14dp"
-                android:textAllCaps="false"
-                android:paddingBottom="14dp"
-                android:id="@+id/activity_admin_deleteProduct"
-                android:layout_marginLeft="62dp"
-                android:layout_marginRight="62dp"
-                android:layout_marginTop="18.7dp"
-                android:text="DELETE PRODUCT"
+                android:layout_marginTop="28.7dp"
+                android:text="PROCEED"
                 android:background="@drawable/blue_fill__rounded_color"/>
         </LinearLayout>
     </ScrollView>

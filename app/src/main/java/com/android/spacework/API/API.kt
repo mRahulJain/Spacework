@@ -18,6 +18,15 @@ interface API {
         @Field("productCategory") productCategory : String
     ): Call<String>
 
+    @POST("/add-user")
+    @FormUrlEncoded
+    fun addUser(
+        @Field("userPhoneNumber") userPhoneNumber: String,
+        @Field("userName") userName: String,
+        @Field("userAddress") userAddress: String,
+        @Field("userToken") userToken: String
+    ): Call<String>
+
     @GET("/get-product-by-category")
     fun getProductByCategory(
         @Query("productCategory") productCategory: String
@@ -33,9 +42,20 @@ interface API {
         @Field("productImage") productImage: String
     ): Call<String>
 
+    @PATCH("/update-user")
+    @FormUrlEncoded
+    fun updateUser(
+        @Field("userPhoneNumber") userPhoneNumber: String,
+        @Field("userAddress") userAddress: String,
+        @Field("userName") userName: String
+    ): Call<String>
+
     @POST("/delete-product")
     @FormUrlEncoded
     fun deleteProduct(
         @Field("productId") productId: String
     ): Call<String>
+
+    @GET("/get-all-products")
+    fun getAllProducts(): Call<Array<Product>>
 }

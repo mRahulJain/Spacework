@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.login.LoginActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="273dp"
+            android:background="@drawable/blue_bg">
+            <ImageView
+                android:layout_width="77dp"
+                android:layout_height="77dp"
+                android:layout_marginTop="93dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/logo"/>
+        </FrameLayout>
+        <TextView
+            android:textColor="@android:color/black"
+            android:textSize="26sp"
+            android:text="Hello, नमस्ते !"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="62dp"
+            android:layout_marginRight="62dp"
+            android:layout_marginTop="36.7dp"
+            android:background="@drawable/blue_border_rounded_cornwe">
+            <!-- INPUT -->
+            <EditText
+                android:id="@+id/activity_profile_phoneNumber"
+                android:layout_toRightOf="@+id/userPhoneNumber_icon"
+                android:hint="YOUR PHONE NUMBER"
+                android:textSize="14sp"
+                android:paddingLeft="17dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:enabled="false"
+                android:maxLines="1"
+                android:textCursorDrawable="@drawable/cursor_color"
+                android:background="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <!-- ICON -->
+            <ImageView
+                android:id="@+id/userPhoneNumber_icon"
+                android:src="@drawable/ic_phone"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginLeft="17dp"
+                android:layout_centerVertical="true" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="62dp"
+            android:layout_marginRight="62dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/blue_border_rounded_cornwe">
+            <!-- INPUT -->
+            <EditText
+                android:id="@+id/activity_profile_username"
+                android:layout_toRightOf="@+id/username_icon"
+                android:hint="YOUR NAME"
+                android:textSize="14sp"
+                android:paddingLeft="17dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:maxLines="1"
+                android:inputType="text"
+                android:textCursorDrawable="@drawable/cursor_color"
+                android:background="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <!-- ICON -->
+            <ImageView
+                android:id="@+id/username_icon"
+                android:src="@drawable/ic_person_name"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginLeft="17dp"
+                android:layout_centerVertical="true" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="62dp"
+            android:layout_marginRight="62dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/blue_border_rounded_cornwe">
+            <!-- INPUT -->
+            <EditText
+                android:id="@+id/activity_profile_address"
+                android:layout_toRightOf="@+id/userAddress_icon"
+                android:hint="YOUR NAME"
+                android:textSize="14sp"
+                android:paddingLeft="17dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:maxLines="1"
+                android:textCursorDrawable="@drawable/cursor_color"
+                android:background="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <!-- ICON -->
+            <ImageView
+                android:id="@+id/userAddress_icon"
+                android:src="@drawable/ic_person_location"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginLeft="17dp"
+                android:layout_centerVertical="true" />
+        </RelativeLayout>
+        <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#ffffff"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:paddingTop="14dp"
+            android:textAllCaps="false"
+            app:spinning_bar_width="4dp"
+            app:spinning_bar_color="#FFFFFF"
+            app:spinning_bar_padding="4dp"
+            android:paddingBottom="14dp"
+            android:id="@+id/activity_profile_update"
+            android:layout_marginLeft="62dp"
+            android:layout_marginRight="62dp"
+            android:layout_marginTop="18.7dp"
+            android:layout_marginBottom="18.7dp"
+            android:text="UPDATE"
+            android:background="@drawable/blue_fill__rounded_color" />
+    </LinearLayout>
+</RelativeLayout>

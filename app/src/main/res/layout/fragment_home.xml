@@ -4,11 +4,85 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.HomeFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:visibility="gone"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:id="@+id/fragment_home_errorMessage"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+        <ImageView
+            android:src="@drawable/ic_cancel"
+            android:layout_width="100dp"
+            android:layout_height="100dp"/>
+        <TextView
+            android:text="Something's wrong!"
+            android:textSize="19sp"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <ProgressBar
+        android:id="@+id/fragment_home_loader"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:padding="10dp"
+            android:background="#f2f2f2"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_gravity="center"
+                android:id="@+id/fragment_home_productCount"
+                android:text="Looking for"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:padding="10dp"
+                android:textColor="#1566e0"
+                android:id="@+id/fragment_home_allProducts"
+                android:background="@drawable/blue_border_rounded_cornwe"
+                android:text="All Items"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_marginLeft="6dp"
+                android:id="@+id/fragment_home_water"
+                android:padding="10dp"
+                android:textSize="12sp"
+                android:textColor="@android:color/darker_gray"
+                android:background="@drawable/gray_border_rounded_corners"
+                android:text="WATER"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_marginLeft="6dp"
+                android:padding="10dp"
+                android:id="@+id/fragment_home_coldDrink"
+                android:textSize="12sp"
+                android:textColor="@android:color/darker_gray"
+                android:background="@drawable/gray_border_rounded_corners"
+                android:text="COLD DRINK"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:visibility="gone"
+            android:id="@+id/fragment_home_recyclerView"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 
 </FrameLayout>

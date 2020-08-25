@@ -133,9 +133,111 @@ mongoClient.connect(url, {useNewUrlParser: true}, function(err,client) {
             })
           }
         })
-
       });
       //--------------------------------------------------------------------------------------------------------//
+
+
+      //--------------------------------------------------------------------------------------------------------//
+      //GET ALL PRODUCTS
+      function shuffle(array) {
+         var currentIndex = array.length
+          , temporaryValue
+          , randomIndex
+          ;
+
+        while (0 !== currentIndex) {
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex -= 1;
+
+          temporaryValue = array[currentIndex];
+          array[currentIndex] = array[randomIndex];
+          array[randomIndex] = temporaryValue;
+        }
+
+        return array;
+      }
+      app.get("/get-all-products",(request, response)=>{
+        var db = client.db('spacework');
+        db.collection('products').find().count(function(err,number){
+          if(number==0) {
+            response.json();
+            console.log('No such category exists');
+          } else {
+            db.collection('products').find().toArray(function(err,items){
+              response.json(shuffle(items));
+              console.log('Success in getting products');
+            })
+          }
+        })
+      });
+      //--------------------------------------------------------------------------------------------------------//
+
+
+      //--------------------------------------------------------------------------------------------------------//
+      //POST USER
+      app.post("/add-user", (request,response)=>{
+        var postData = request.body;
+
+        var userPhoneNumber = `${postData.userPhoneNumber}`;
+        var userName = `${postData.userName}`;
+        var userAddress = `${postData.userAddress}`;
+        var userToken = `${postData.userToken}`
+
+        var insertJson = {
+          userPhoneNumber: userPhoneNumber,
+          userName: userName,
+          userAddress: userAddress,
+          userToken: userToken
+        };
+
+        var db = client.db('spacework');
+
+        db.collection('users').find({'userPhoneNumber': userPhoneNumber}).count(function(err,number){
+          if(number!=0) {
+            db.collection('users').deleteOne({'userPhoneNumber': userPhoneNumber}, function(err,res){
+              db.collection('users').insertOne(insertJson,function(err,res){
+                response.json('User added');
+                console.log('User added');
+              })
+            })
+          } else {
+            db.collection('users').insertOne(insertJson,function(err,res){
+              response.json('User added');
+              console.log('User added');
+            })
+          }
+        })
+      })
+      //--------------------------------------------------------------------------------------------------------//
+
+
+      //--------------------------------------------------------------------------------------------------------//
+      //PATCH USER
+      app.patch('/update-user', (request, response)=>{
+        var patchData = request.body;
+
+        var userPhoneNumber = `${patchData.userPhoneNumber}`;
+        var userAddress = `${patchData.userAddress}`;
+        var userName = `${patchData.userName}`;
+
+        var db = client.db('spacework');
+        db.collection('users').updateOne(
+          {
+            'userPhoneNumber': userPhoneNumber
+          },
+            {
+              $set:{
+                'userName': userName,
+                'userAddress': userAddress
+              }
+            },
+            function(err,res){
+              response.json("User Updated");
+              console.log("User Updated");
+            }
+          )
+        });
+        //--------------------------------------------------------------------------------------------------------//
 
     //START WEB SERVER
     // var port = process.env.PORT || 3000;
