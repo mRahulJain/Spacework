@@ -1,5 +1,6 @@
 package com.android.spacework.API
 
+import com.android.spacework.model.Cart
 import com.android.spacework.model.Product
 import retrofit2.Call
 import retrofit2.http.*
@@ -58,4 +59,10 @@ interface API {
 
     @GET("/get-all-products")
     fun getAllProducts(): Call<Array<Product>>
+
+    @GET("/get-product-by-id")
+    fun getProductById(
+        @Query("productId") productId: String
+    ): Call<Product>
+
 }

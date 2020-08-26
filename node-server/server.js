@@ -82,6 +82,28 @@ mongoClient.connect(url, {useNewUrlParser: true}, function(err,client) {
 
 
     //--------------------------------------------------------------------------------------------------------//
+    //GET PRODUCT BY ID
+    app.get('/get-product-by-id', (request, response)=>{
+      var queryData = request.query;
+      var productId = `${queryData.productId}`;
+
+      var db = client.db('spacework');
+      db.collection('products').find({'productId': productId}).count(function(err,number){
+        if(number==0) {
+          response.json();
+          console.log('No such product exists');
+        } else {
+          db.collection('products').findOne({'productId': productId}, function(err,res){
+            response.json(res);
+            console.log('Success in getting product by id');
+          })
+        }
+      })
+    });
+    //--------------------------------------------------------------------------------------------------------//
+
+
+    //--------------------------------------------------------------------------------------------------------//
     //PATCH PRODUCT
     app.patch('/update-product', (request, response)=>{
       var patchData = request.body;
@@ -181,7 +203,7 @@ mongoClient.connect(url, {useNewUrlParser: true}, function(err,client) {
         var userPhoneNumber = `${postData.userPhoneNumber}`;
         var userName = `${postData.userName}`;
         var userAddress = `${postData.userAddress}`;
-        var userToken = `${postData.userToken}`
+        var userToken = `${postData.userToken}`;
 
         var insertJson = {
           userPhoneNumber: userPhoneNumber,
@@ -238,6 +260,63 @@ mongoClient.connect(url, {useNewUrlParser: true}, function(err,client) {
           )
         });
         //--------------------------------------------------------------------------------------------------------//
+
+
+        // //--------------------------------------------------------------------------------------------------------//
+        // //GET CART DATA
+        // app.get("/get-cart", (request,response)=>{
+        //     var getData = request.query;
+        //
+        //     var userPhoneNumber = `${getData.userPhoneNumber}`;
+        //
+        //     var db = client.db('spacework');
+        //     db.collection('cart').find({'userPhoneNumber': userPhoneNumber}).count(function(err,number){
+        //       if(number!=0) {
+        //         db.collection('cart').findOne({'userPhoneNumber': userPhoneNumber}, function(err,res){
+        //           if (err) throw err;
+        //           response.json(res);
+        //           console.log("Success in getting cart");
+        //         })
+        //       } else {
+        //         response.json("Nothing in cart");
+        //         console.log("Nothing in cart");
+        //       }
+        //     })
+        // });
+        // //--------------------------------------------------------------------------------------------------------//
+        //
+        //
+        // //--------------------------------------------------------------------------------------------------------//
+        // //POST CART DATA
+        // app.post("/add-cart", (request,response)=>{
+        //     var postData = request.body;
+        //
+        //     var userPhoneNumber = `${postData.userPhoneNumber}`;
+        //     var userCart = postData.userCart;
+        //
+        //     var insertJson = {
+        //       userPhoneNumber: userPhoneNumber,
+        //       userCart: userCart
+        //     };
+        //
+        //     var db = client.db('spacework');
+        //     db.collection('cart').find({'userPhoneNumber': userPhoneNumber}).count(function(err,number){
+        //       if(number!=0) {
+        //         db.collection('cart').deleteOne({'userPhoneNumber': userPhoneNumber}, function(err,res){
+        //           db.collection('cart').insertOne(insertJson, function(err,res){
+        //               response.json("Cart Updated");
+        //               console.log("Cart Updated");
+        //           })
+        //         })
+        //       } else {
+        //         db.collection('cart').insertOne(insertJson, function(err,res){
+        //             response.json("Cart Updated");
+        //             console.log("Cart Updated");
+        //         })
+        //       }
+        //     })
+        // });
+        // //--------------------------------------------------------------------------------------------------------//
 
     //START WEB SERVER
     // var port = process.env.PORT || 3000;

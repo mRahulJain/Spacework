@@ -8,13 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.android.spacework.R
+import com.android.spacework.bottomsheet.BottomSheetAddCart
+import com.android.spacework.model.Cart
 import com.android.spacework.model.Product
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.list_item_cart.view.*
 
 
-class CartAdapter(val activity: Activity, val context: Context, val productList: ArrayList<Product>)
-    : RecyclerView.Adapter<CartAdapter.NameViewHolder>() {
+class CartAdapter(val activity: Activity, val context: Context, val productList: ArrayList<Cart>)
+    : RecyclerView.Adapter<CartAdapter.NameViewHolder>(), BottomSheetAddCart.BottomSheetAddCartListener {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NameViewHolder {
         val li = parent.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -31,8 +33,14 @@ class CartAdapter(val activity: Activity, val context: Context, val productList:
             .load(productList[position]!!.productImage)
             .into(holder.itemView.list_item_cart_productImage)
         holder.itemView.list_item_cart_productName.text = productList[position]!!.productName
+        holder.itemView.list_item_cart_productPriceTotal.text = "₹ "+productList[position]!!.productTotalPrice
+        holder.itemView.list_item_cart_itemCount.text = "x"+productList[position]!!.productCount
     }
 
 
     class NameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+
+    override fun onButtonClick(flag: Boolean) {
+
+    }
 }

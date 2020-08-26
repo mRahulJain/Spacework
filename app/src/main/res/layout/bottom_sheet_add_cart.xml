@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#ececec"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:text="Set the amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="40dp"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageButton
+            android:background="#f8f8ff"
+            android:id="@+id/bottom_sheet_add_cart_decrease"
+            android:src="@drawable/ic_decrease"
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
+        <TextView
+            android:gravity="center"
+            android:text="1"
+            android:layout_gravity="center"
+            android:background="#C0D6F7"
+            android:textSize="16sp"
+            android:id="@+id/bottom_sheet_add_cart_count"
+            android:textColor="@android:color/black"
+            android:layout_width="40dp"
+            android:layout_height="35dp"/>
+        <ImageButton
+            android:id="@+id/bottom_sheet_add_cart_increase"
+            android:background="#f8f8ff"
+            android:src="@drawable/ic_increase"
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
+    </LinearLayout>
+</LinearLayout>

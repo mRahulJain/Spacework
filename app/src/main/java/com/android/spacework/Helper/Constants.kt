@@ -28,6 +28,7 @@ class Constants {
     val USER_NAME : String = "USER_NAME"
     val USER_ADDRESS: String = "USER_ADDRESS"
     val USER_USERTYPE: String = "USER_USERTYPE"
+    val USER_USERCART: String = "USER_USERCART"
 
 
     fun generateProductId(productName: String) : String {

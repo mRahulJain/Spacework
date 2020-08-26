@@ -14,4 +14,8 @@
         <item name="android:background">#1566e0</item>
     </style>
 
+    <style name="progressBarBlue" parent="@style/Theme.AppCompat.Light">
+        <item name="colorAccent">#1566e0</item>
+    </style>
+
 </resources>
