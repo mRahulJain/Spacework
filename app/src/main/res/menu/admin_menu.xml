@@ -5,11 +5,11 @@
         android:title="View Orders" />
     <item
         android:id="@+id/tab_addProduct"
-        android:title="Add product" />
+        android:title="Add Product" />
     <item
         android:id="@+id/tab_updateProduct"
-        android:title="Update Orders" />
+        android:title="Update Product" />
     <item
         android:id="@+id/tab_deleteProduct"
-        android:title="Delete Orders" />
+        android:title="Delete Product" />
 </menu>
