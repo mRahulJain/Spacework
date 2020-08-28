@@ -2,8 +2,10 @@ package com.android.spacework.Helper
 
 import android.app.Activity
 import android.content.Context
+import android.widget.ProgressBar
 import androidx.core.content.res.ResourcesCompat
 import com.android.spacework.R
+import kotlinx.android.synthetic.main.fragment_cart.view.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import www.sanju.motiontoast.MotionToast
@@ -29,6 +31,7 @@ class Constants {
     val USER_ADDRESS: String = "USER_ADDRESS"
     val USER_USERTYPE: String = "USER_USERTYPE"
     val USER_USERCART: String = "USER_USERCART"
+    val delay: Long = 2000
 
 
     fun generateProductId(productName: String) : String {
@@ -55,5 +58,11 @@ class Constants {
             MotionToast.SHORT_DURATION,
             ResourcesCompat.getFont(context, R.font.helvetica_regular)
         )
+    }
+
+    fun progressAnimation(activity: Activity, progressBar: ProgressBar) {
+        val anim = ProgressBarAnim(activity!!, progressBar, 0f, 100f)
+        anim.duration = delay
+        progressBar.animation = anim
     }
 }

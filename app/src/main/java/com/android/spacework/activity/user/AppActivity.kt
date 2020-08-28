@@ -89,6 +89,11 @@ class AppActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        activity_app_orders.setOnClickListener {
+            val intent = Intent(this, BagActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     private fun getUserType() {

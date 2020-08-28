@@ -262,61 +262,82 @@ mongoClient.connect(url, {useNewUrlParser: true}, function(err,client) {
         //--------------------------------------------------------------------------------------------------------//
 
 
-        // //--------------------------------------------------------------------------------------------------------//
-        // //GET CART DATA
-        // app.get("/get-cart", (request,response)=>{
-        //     var getData = request.query;
-        //
-        //     var userPhoneNumber = `${getData.userPhoneNumber}`;
-        //
-        //     var db = client.db('spacework');
-        //     db.collection('cart').find({'userPhoneNumber': userPhoneNumber}).count(function(err,number){
-        //       if(number!=0) {
-        //         db.collection('cart').findOne({'userPhoneNumber': userPhoneNumber}, function(err,res){
-        //           if (err) throw err;
-        //           response.json(res);
-        //           console.log("Success in getting cart");
-        //         })
-        //       } else {
-        //         response.json("Nothing in cart");
-        //         console.log("Nothing in cart");
-        //       }
-        //     })
-        // });
-        // //--------------------------------------------------------------------------------------------------------//
-        //
-        //
-        // //--------------------------------------------------------------------------------------------------------//
-        // //POST CART DATA
-        // app.post("/add-cart", (request,response)=>{
-        //     var postData = request.body;
-        //
-        //     var userPhoneNumber = `${postData.userPhoneNumber}`;
-        //     var userCart = postData.userCart;
-        //
-        //     var insertJson = {
-        //       userPhoneNumber: userPhoneNumber,
-        //       userCart: userCart
-        //     };
-        //
-        //     var db = client.db('spacework');
-        //     db.collection('cart').find({'userPhoneNumber': userPhoneNumber}).count(function(err,number){
-        //       if(number!=0) {
-        //         db.collection('cart').deleteOne({'userPhoneNumber': userPhoneNumber}, function(err,res){
-        //           db.collection('cart').insertOne(insertJson, function(err,res){
-        //               response.json("Cart Updated");
-        //               console.log("Cart Updated");
-        //           })
-        //         })
-        //       } else {
-        //         db.collection('cart').insertOne(insertJson, function(err,res){
-        //             response.json("Cart Updated");
-        //             console.log("Cart Updated");
-        //         })
-        //       }
-        //     })
-        // });
-        // //--------------------------------------------------------------------------------------------------------//
+        //--------------------------------------------------------------------------------------------------------//
+        //POST ORDERS
+        app.post("/post-order",(request, response)=> {
+          var postData = request.body;
+
+          var userPhoneNumber = `${postData.userPhoneNumber}`;
+          var userName = `${postData.userName}`;
+          var userAddress = `${postData.userAddress}`;
+          var orderHashmap = `${postData.orderHashmap}`;
+          var orderDate = new Date().toISOString();
+          var orderStatus = 'Order Received';
+          var orderTotal = `${postData.orderTotal}`;
+
+          var userOrder = {
+            orderHashmap: orderHashmap,
+            orderStatus: orderStatus,
+            orderDate: orderDate,
+            orderTotal: orderTotal
+          };
+
+          var db = client.db('spacework');
+          db.collection('orders').find({'userPhoneNumber': userPhoneNumber}).count(function(err,number){
+            if(number == 0) {
+              var userOrders = [userOrder];
+              var insertJson = {
+                userPhoneNumber: userPhoneNumber,
+                userName: userName,
+                userAddress: userAddress,
+                userOrders: userOrders
+              };
+
+              db.collection('orders').insertOne(insertJson, function(err,res){
+                response.json("Order Placed");
+                console.log("Order Placed");
+              })
+            } else {
+              db.collection('orders').updateOne(
+                {'userPhoneNumber': userPhoneNumber},
+                {$push: {'userOrders': userOrder}},
+                function(err,res){
+                  response.json("Order Placed");
+                  console.log("Order Placed");
+                }
+              )
+            }
+          })
+        });
+        //--------------------------------------------------------------------------------------------------------//
+
+
+
+        //--------------------------------------------------------------------------------------------------------//
+        //GET ORDERS BY USERID
+        app.get("/get-order-by-userid",(request, response)=> {
+          var queryData = request.query;
+
+          var userPhoneNumber = `+${queryData.userPhoneNumber}`;
+          console.log(userPhoneNumber);
+          var db = client.db('spacework');
+          db.collection('orders').find({'userPhoneNumber': userPhoneNumber}).count(function(err,number){
+            if(number == 0) {
+              response.json();
+              console.log('No orders present by this user');
+            } else {
+              db.collection('orders').findOne(
+                {'userPhoneNumber': userPhoneNumber},
+                function(err,res) {
+                  var toSendArray = res.userOrders;
+                  response.json(toSendArray);
+                  console.log("Successfull in getting orders");
+                }
+              )
+            }
+          })
+        });
+        //--------------------------------------------------------------------------------------------------------//
 
     //START WEB SERVER
     // var port = process.env.PORT || 3000;

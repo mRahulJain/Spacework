@@ -40,13 +40,13 @@
             android:id="@+id/fragment_cart_itemExists"
             android:background="#ececec"
             android:orientation="vertical"
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <TextView
                 android:text="To see your updated cart\nIt is recommended to swipe and refresh."
                 android:gravity="center"
                 android:textSize="10sp"
+                android:textColor="@android:color/black"
                 android:background="#ffffff"
                 android:layout_gravity="center"
                 android:layout_width="match_parent"
@@ -89,20 +89,27 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
-                <androidx.cardview.widget.CardView
-                    app:cardCornerRadius="10dp"
-                    android:layout_margin="10dp"
-                    app:cardElevation="5dp"
-                    app:cardBackgroundColor="#C0D6F7"
+                <FrameLayout
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="4dp"
+                    android:elevation="4dp"
+                    android:background="@drawable/light_blue_fill_rounded_corners"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
-                    <Button
-                        android:text="NEXT"
+                    <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+                        android:shadowRadius="1"
+                        android:textSize="17sp"
+                        android:textStyle="bold"
+                        android:text="PLACE ORDER"
+                        app:spinning_bar_width="4dp"
+                        app:spinning_bar_color="#FFFFFF"
+                        app:spinning_bar_padding="4dp"
+                        android:padding="10dp"
                         android:id="@+id/fragment_cart_next"
-                        android:background="@android:color/transparent"
+                        android:background="?attr/selectableItemBackgroundBorderless"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
-                </androidx.cardview.widget.CardView>
+                </FrameLayout>
             </LinearLayout>
         </LinearLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

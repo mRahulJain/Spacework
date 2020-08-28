@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.android.spacework.Helper.Constants
 import com.android.spacework.R
-import com.android.spacework.bottomsheet.BottomSheetAddCart
+import com.android.spacework.custom_helper.CustomBottomSheet
 import com.android.spacework.model.Product
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -20,11 +20,12 @@ import kotlinx.android.synthetic.main.list_item_product.view.*
 
 
 class HomeAdapter(val activity: Activity, val context: Context, val productList: ArrayList<Product>)
-    : RecyclerView.Adapter<HomeAdapter.NameViewHolder>(), BottomSheetAddCart.BottomSheetAddCartListener {
+    : RecyclerView.Adapter<HomeAdapter.NameViewHolder>(), CustomBottomSheet.BottomSheetAddCartListener {
 
     val displayMetrics = DisplayMetrics()
     var width = 0
     var selectedItem = ""
+    var itemList =  arrayListOf<String>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NameViewHolder {
         val li = parent.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -52,12 +53,21 @@ class HomeAdapter(val activity: Activity, val context: Context, val productList:
         } else {
             holder.itemView.list_item_product_myProduct.alpha = 1.0f
             holder.itemView.list_item_product_isAvailable.visibility = View.GONE
-            holder.itemView.list_item_product_productAddToCard.setOnClickListener {
-                selectedItem = productList[position]!!.productId
-                val c = getCountIfPresent(selectedItem)
-                val bottomSheet = BottomSheetAddCart(this, c)
-                bottomSheet.show((context as AppCompatActivity).supportFragmentManager, "bottom sheet")
+        }
+
+        holder.itemView.list_item_product_productAddToCard.setOnClickListener {
+            itemList.clear()
+            if(productList[position].productIsAvailable == "false") {
+                return@setOnClickListener
             }
+            selectedItem = productList[position]!!.productId
+            itemList.add(productList[position]!!.productName)
+            itemList.add(productList[position]!!.productPrice)
+            itemList.add(productList[position]!!.productImage)
+
+            val c = getCountIfPresent(selectedItem)
+            val bottomSheet = CustomBottomSheet(this, c)
+            bottomSheet.show((context as AppCompatActivity).supportFragmentManager, "bottom sheet")
         }
 
         Picasso.with(context)
@@ -74,9 +84,10 @@ class HomeAdapter(val activity: Activity, val context: Context, val productList:
             Context.MODE_PRIVATE
         )
         val hashmapString = sharedPreferences.getString(Constants().USER_USERCART, "")
-        if(hashmapString == "") {
-            val hashmap = HashMap<String, String>()
-            hashmap[selectedItem] = "1"
+        if(hashmapString == "" || hashmapString == "{}") {
+            val hashmap = HashMap<String, ArrayList<String>>()
+            itemList.add(0, "1")
+            hashmap[selectedItem] = itemList
             val gson = Gson()
             val hashmapString = gson.toJson(hashmap)
             sharedPreferences.edit().putString(
@@ -85,10 +96,10 @@ class HomeAdapter(val activity: Activity, val context: Context, val productList:
             ).apply()
         } else {
             val gson = Gson()
-            val type = object : TypeToken<HashMap<String?, String?>?>() {}.type
-            val hashmap: HashMap<String, String> = gson.fromJson(hashmapString, type)
+            val type = object : TypeToken<HashMap<String?, ArrayList<String>?>?>() {}.type
+            val hashmap: HashMap<String, ArrayList<String>> = gson.fromJson(hashmapString, type)
             if(hashmap.containsKey(selectedItem)) {
-                var count = hashmap[selectedItem].toString().toInt()
+                var count = hashmap[selectedItem]!![0].toInt()
                 if(flag) {
                     count++
                 } else {
@@ -97,10 +108,11 @@ class HomeAdapter(val activity: Activity, val context: Context, val productList:
                 if(count == 0) {
                     hashmap.remove(selectedItem)
                 } else {
-                    hashmap[selectedItem] = count.toString()
+                    hashmap[selectedItem]!!.set(0, count.toString())
                 }
             } else {
-                hashmap[selectedItem] = "1"
+                itemList.add(0, "1")
+                hashmap[selectedItem] = itemList
             }
             val hashmapString = gson.toJson(hashmap)
             sharedPreferences.edit().putString(
@@ -120,10 +132,10 @@ class HomeAdapter(val activity: Activity, val context: Context, val productList:
             0
         } else {
             val gson = Gson()
-            val type = object : TypeToken<HashMap<String?, String?>?>() {}.type
-            val hashmap: HashMap<String, String> = gson.fromJson(hashmapString, type)
+            val type = object : TypeToken<HashMap<String?, ArrayList<String>?>?>() {}.type
+            val hashmap: HashMap<String, ArrayList<String>> = gson.fromJson(hashmapString, type)
             if(hashmap.containsKey(productId)) {
-                hashmap[productId].toString().toInt()
+                hashmap[productId]!![0].toInt()
             } else {
                 0
             }

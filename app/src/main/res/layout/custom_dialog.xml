@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    app:cardElevation="5dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_marginTop="10dp"
+        android:text="If your order summary is not correct\nwe recommend you to refresh the cart first"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center|top"
+        android:gravity="center"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:paddingTop="40dp"
+        android:paddingRight="40dp"
+        android:gravity="center"
+        android:paddingLeft="40dp"
+        android:paddingBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="Order Summary"
+            android:textSize="22sp"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_marginTop="4dp"
+            android:textSize="20sp"
+            android:text="Product Count"
+            android:id="@+id/custom_dialog_productCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:textSize="16sp"
+            android:id="@+id/custom_dialog_productSummary"
+            android:layout_marginTop="10dp"
+            android:text="Product Names with quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:id="@+id/custom_dialog_orderAmount"
+            android:layout_marginTop="10dp"
+            android:text="Order total amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:textSize="16sp"
+            android:textColor="#ffffff"
+            android:layout_marginTop="30dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textAllCaps="false"
+            app:spinning_bar_width="4dp"
+            app:spinning_bar_color="#FFFFFF"
+            app:spinning_bar_padding="4dp"
+            android:id="@+id/custom_dialog_placeOrder"
+            android:text="Place Order"
+            android:background="@drawable/blue_fill__rounded_color" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

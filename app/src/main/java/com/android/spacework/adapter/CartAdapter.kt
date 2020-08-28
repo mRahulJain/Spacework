@@ -2,21 +2,18 @@ package com.android.spacework.adapter
 
 import android.app.Activity
 import android.content.Context
-import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.android.spacework.R
-import com.android.spacework.bottomsheet.BottomSheetAddCart
 import com.android.spacework.model.Cart
-import com.android.spacework.model.Product
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.list_item_cart.view.*
 
 
 class CartAdapter(val activity: Activity, val context: Context, val productList: ArrayList<Cart>)
-    : RecyclerView.Adapter<CartAdapter.NameViewHolder>(), BottomSheetAddCart.BottomSheetAddCartListener {
+    : RecyclerView.Adapter<CartAdapter.NameViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NameViewHolder {
         val li = parent.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -39,8 +36,4 @@ class CartAdapter(val activity: Activity, val context: Context, val productList:
 
 
     class NameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
-
-    override fun onButtonClick(flag: Boolean) {
-
-    }
 }

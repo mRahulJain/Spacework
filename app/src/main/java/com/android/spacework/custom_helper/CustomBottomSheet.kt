@@ -1,4 +1,4 @@
-package com.android.spacework.bottomsheet
+package com.android.spacework.custom_helper
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,10 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.android.spacework.R
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import kotlinx.android.synthetic.main.bottom_sheet_add_cart.*
 import kotlinx.android.synthetic.main.bottom_sheet_add_cart.view.*
 
-class BottomSheetAddCart() : BottomSheetDialogFragment() {
+class CustomBottomSheet() : BottomSheetDialogFragment() {
 
     interface BottomSheetAddCartListener {
         fun onButtonClick(flag: Boolean)

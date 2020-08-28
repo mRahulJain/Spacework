@@ -1,6 +1,7 @@
 package com.android.spacework.API
 
 import com.android.spacework.model.Cart
+import com.android.spacework.model.Order
 import com.android.spacework.model.Product
 import retrofit2.Call
 import retrofit2.http.*
@@ -64,5 +65,20 @@ interface API {
     fun getProductById(
         @Query("productId") productId: String
     ): Call<Product>
+
+    @POST("/post-order")
+    @FormUrlEncoded
+    fun postOrder(
+        @Field("userPhoneNumber") userPhoneNumber: String,
+        @Field("userName") userName: String,
+        @Field("userAddress") userAddress: String,
+        @Field("orderHashmap") orderHashmap: String,
+        @Field("orderTotal") orderTotal: Double
+    ) : Call<String>
+
+    @GET("/get-order-by-userid")
+    fun getOrders(
+        @Query("userPhoneNumber") userPhoneNumber: String
+    ) : Call<Array<Order>>
 
 }
