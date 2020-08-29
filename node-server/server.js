@@ -273,13 +273,15 @@ mongoClient.connect(url, {useNewUrlParser: true}, function(err,client) {
           var orderHashmap = `${postData.orderHashmap}`;
           var orderDate = new Date().toISOString();
           var orderStatus = 'Order Received';
+          var orderHasPaid = 'no';
           var orderTotal = `${postData.orderTotal}`;
 
           var userOrder = {
             orderHashmap: orderHashmap,
             orderStatus: orderStatus,
             orderDate: orderDate,
-            orderTotal: orderTotal
+            orderTotal: orderTotal,
+            orderHasPaid: orderHasPaid
           };
 
           var db = client.db('spacework');
@@ -338,6 +340,115 @@ mongoClient.connect(url, {useNewUrlParser: true}, function(err,client) {
           })
         });
         //--------------------------------------------------------------------------------------------------------//
+
+
+
+        //--------------------------------------------------------------------------------------------------------//
+        //GET ALL ORDERS
+        app.get("/get-all-orders",(request, response)=> {
+          var db = client.db('spacework');
+          db.collection('orders').find().count(function(err,number){
+            if(number == 0) {
+              response.json();
+              console.log('No orders present by this user');
+            } else {
+              db.collection('orders').find().toArray(function(err,items){
+                response.json(shuffle(items));
+                console.log('Success in getting orders');
+              })
+            }
+          })
+        });
+        //--------------------------------------------------------------------------------------------------------//
+
+
+        //--------------------------------------------------------------------------------------------------------//
+        //PATCH ORDERS BY USERID CHANGE ORDERHASPAID
+        app.patch("/order-by-id-haspaid",(request, response)=> {
+          var patchData = request.body;
+
+          var userPhoneNumber = `+${patchData.userPhoneNumber}`;
+          var orderHashmap = `${patchData.orderHashmap}`;
+          var orderHasPaid = `${patchData.orderHasPaid}`;
+
+          var db = client.db('spacework');
+          db.collection('orders').find({'userPhoneNumber': userPhoneNumber}).count(function(err,number){
+            if(number == 0) {
+              response.json();
+              console.log('No orders present by this user');
+            } else {
+              db.collection('orders').updateOne(
+                {'userOrders': {$elemMatch: {'orderHashmap': orderHashmap}}},
+                {$set: {'userOrders.$.orderHasPaid': orderHasPaid}},
+                function(err,res) {
+                  response.json("Paid status updated");
+                  console.log("Paid status updated");
+                }
+              )
+            }
+          })
+        });
+        //--------------------------------------------------------------------------------------------------------//
+
+
+
+        //--------------------------------------------------------------------------------------------------------//
+        //PATCH ORDERS BY USERID CHANGE ORDERDELIVERY
+        app.patch("/order-by-id-delivery",(request, response)=> {
+          var patchData = request.body;
+
+          var userPhoneNumber = `+${patchData.userPhoneNumber}`;
+          var orderHashmap = `${patchData.orderHashmap}`;
+          var orderStatus = `${patchData.orderStatus}`;
+
+          var db = client.db('spacework');
+          db.collection('orders').find({'userPhoneNumber': userPhoneNumber}).count(function(err,number){
+            if(number == 0) {
+              response.json();
+              console.log('No orders present by this user');
+            } else {
+              db.collection('orders').updateOne(
+                {'userOrders': {$elemMatch: {'orderHashmap': orderHashmap}}},
+                {$set: {'userOrders.$.orderStatus': orderStatus}},
+                function(err,res) {
+                  response.json("Delivery status updated");
+                  console.log("Delivery status updated");
+                }
+              )
+            }
+          })
+        });
+        //--------------------------------------------------------------------------------------------------------//
+
+
+
+        //--------------------------------------------------------------------------------------------------------//
+        //PATCH ORDERS BY USERID CANCEL ORDER
+        app.patch("/cancel-order",(request, response)=> {
+          var patchData = request.body;
+
+          var userPhoneNumber = `+${patchData.userPhoneNumber}`;
+          var orderHashmap = `${patchData.orderHashmap}`;
+
+          var db = client.db('spacework');
+          db.collection('orders').find({'userPhoneNumber': userPhoneNumber}).count(function(err,number){
+            if(number == 0) {
+              response.json();
+              console.log('No orders present by this user');
+            } else {
+              db.collection('orders').updateOne(
+                {'userOrders': {$elemMatch: {'orderHashmap': orderHashmap}}},
+                {$pull: {'userOrders': {'orderHashmap': orderHashmap}}},
+                function(err,res) {
+                  response.json("Ordered Cancelled");
+                  console.log("Ordered Cancelled");
+                }
+              )
+            }
+          })
+        });
+        //--------------------------------------------------------------------------------------------------------//
+
 
     //START WEB SERVER
     // var port = process.env.PORT || 3000;

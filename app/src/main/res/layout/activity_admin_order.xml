@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -6,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.user.BagActivity">
+    tools:context=".activity.user.AppActivity">
     <LinearLayout
         android:orientation="horizontal"
         android:background="#1566e0"
@@ -35,26 +34,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
-    <TextView
-        android:visibility="gone"
-        android:id="@+id/activity_bag_noOrders"
-        android:textColor="@android:color/black"
-        android:textSize="22sp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:text="No orders"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <ProgressBar
-        android:visibility="gone"
-        android:layout_marginTop="20dp"
-        android:id="@+id/activity_bag_progressBar"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <androidx.recyclerview.widget.RecyclerView
-        android:visibility="gone"
-        android:id="@+id/activity_bag_recyclerView"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:id="@+id/activity_admin_order_refresh"
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ProgressBar
+                android:visibility="gone"
+                android:id="@+id/activity_admin_order_progressBar"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:visibility="gone"
+                android:id="@+id/activity_admin_order_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </FrameLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </LinearLayout>

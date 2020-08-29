@@ -26,11 +26,12 @@ class CartAdapter(val activity: Activity, val context: Context, val productList:
     }
 
     override fun onBindViewHolder(holder: NameViewHolder, position: Int) {
+        val price = (productList[position]!!.productTotalPrice).toDouble()/(productList[position]!!.productCount).toDouble()
         Picasso.with(context)
             .load(productList[position]!!.productImage)
             .into(holder.itemView.list_item_cart_productImage)
         holder.itemView.list_item_cart_productName.text = productList[position]!!.productName
-        holder.itemView.list_item_cart_productPriceTotal.text = "₹ "+productList[position]!!.productTotalPrice
+        holder.itemView.list_item_cart_productPriceTotal.text = "₹ $price"
         holder.itemView.list_item_cart_itemCount.text = "x"+productList[position]!!.productCount
     }
 

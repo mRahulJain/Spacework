@@ -12,9 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.android.spacework.Helper.Constants
 import com.android.spacework.R
-import com.android.spacework.activity.admin.AddProductActivity
-import com.android.spacework.activity.admin.DeleteProductActivity
-import com.android.spacework.activity.admin.UpdateProductActivity
+import com.android.spacework.activity.admin.*
 import com.android.spacework.activity.login.LoginActivity
 import com.android.spacework.adapter.TabAdapter
 import com.google.android.material.tabs.TabLayout
@@ -59,6 +57,8 @@ class AppActivity : AppCompatActivity() {
         dropDownMenu.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.tab_viewOrders ->{
+                    val intent = Intent(this, AdminOrderActivity::class.java)
+                    startActivity(intent)
                     return@OnMenuItemClickListener true
                 }
                 R.id.tab_addProduct -> {

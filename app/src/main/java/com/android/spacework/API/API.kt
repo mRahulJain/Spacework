@@ -2,8 +2,10 @@ package com.android.spacework.API
 
 import com.android.spacework.model.Cart
 import com.android.spacework.model.Order
+import com.android.spacework.model.Orders
 import com.android.spacework.model.Product
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.http.*
 
 interface API {
@@ -77,8 +79,36 @@ interface API {
     ) : Call<String>
 
     @GET("/get-order-by-userid")
-    fun getOrders(
+    fun getOrdersByID(
         @Query("userPhoneNumber") userPhoneNumber: String
     ) : Call<Array<Order>>
+
+
+    @GET("/get-all-orders")
+    fun getAllOrders() : Call<Array<Orders>>
+
+    @PATCH("/order-by-id-haspaid")
+    @FormUrlEncoded
+    fun updatePayStatus(
+        @Field("userPhoneNumber") userPhoneNumber: String,
+        @Field("orderHashmap") orderHashmap: String,
+        @Field("orderHasPaid") orderHasPaid: String
+    ) : Call<String>
+
+
+    @PATCH("/order-by-id-delivery")
+    @FormUrlEncoded
+    fun updateDeliveryStatus(
+        @Field("userPhoneNumber") userPhoneNumber: String,
+        @Field("orderHashmap") orderHashmap: String,
+        @Field("orderStatus") orderStatus: String
+    ) : Call<String>
+
+    @PATCH("/cancel-order")
+    @FormUrlEncoded
+    fun cancelOrder(
+        @Field("userPhoneNumber") userPhoneNumber: String,
+        @Field("orderHashmap") orderHashmap: String
+    ) : Call<String>
 
 }

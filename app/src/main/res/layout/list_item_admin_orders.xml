@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:padding="13sp"
+    android:gravity="center"
+    android:background="#C0D6F7"
+    android:orientation="vertical"
+    android:id="@+id/list_item_admin_orders_parent"
+    android:layout_margin="1dp"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/list_item_admin_orders_username"
+        android:textColor="@android:color/black"
+        android:textSize="19sp"
+        android:gravity="center"
+        android:text="UserName appears here"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

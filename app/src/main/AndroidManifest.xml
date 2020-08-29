@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.user.BagActivity"></activity>
+        <activity android:name=".activity.admin.AdminOrderActivity"></activity>
+        <activity android:name=".activity.admin.AdminViewOrderActivity" />
+        <activity android:name=".activity.user.BagActivity" />
         <activity android:name=".activity.user.OrderActivity" />
         <activity android:name=".activity.user.ProfileActivity" />
         <activity android:name=".activity.login.UserDetailsActivity" />

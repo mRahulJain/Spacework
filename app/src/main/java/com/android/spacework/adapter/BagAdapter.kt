@@ -19,7 +19,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import android.os.Handler
 
-class BagAdapter(val activity: Activity, val context: Context, val orderList: ArrayList<Order>)
+class BagAdapter(val activity: Activity, val context: Context, val phoneNumber: String,val orderList: ArrayList<Order>)
     : RecyclerView.Adapter<BagAdapter.NameViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NameViewHolder {
@@ -49,13 +49,36 @@ class BagAdapter(val activity: Activity, val context: Context, val orderList: Ar
         val iterator = hashmap.entries.iterator()
         while(iterator.hasNext()) {
             val element = iterator.next() as Map.Entry<String, ArrayList<String>>
-            val productId = element.key
             val productAmount = element.value[0].toInt()
             val productName = element.value[1]
             orderDetails += "$productName - x$productAmount\n"
         }
         orderDetails = orderDetails.trim()
         holder.itemView.list_item_order_orderDetails.text = orderDetails
+
+        holder.itemView.list_item_cart_cancelOrder.setOnClickListener {
+
+            val cancelOrderService = Constants().retrofit.create(API::class.java)
+            cancelOrderService.cancelOrder(phoneNumber, orderList[position]!!.orderHashmap)
+                .enqueue(object : Callback<String>{
+                    override fun onResponse(call: Call<String>, response: Response<String>) {
+                        if(response.isSuccessful) {
+                            if(response.body() == "Ordered Cancelled") {
+                                Constants().generateSuccessToast(
+                                    activity!!,
+                                    context!!,
+                                    "Order Cancelled successfully"
+                                )
+                                activity!!.finish()
+                            }
+                        }
+                    }
+
+                    override fun onFailure(call: Call<String>, t: Throwable) {
+                    }
+
+                })
+        }
     }
 
     class NameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)

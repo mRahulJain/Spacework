@@ -23,6 +23,7 @@ class BagActivity : AppCompatActivity() {
         setContentView(R.layout.activity_bag)
 
         activity_bag_progressBar.visibility = View.VISIBLE
+        activity_bag_noOrders.visibility = View.GONE
 
         val getOrderService = Constants().retrofit.create(API::class.java)
         val sharedPreferences = this.getSharedPreferences(
@@ -34,31 +35,29 @@ class BagActivity : AppCompatActivity() {
             ""
         )
         phoneNumber = phoneNumber!!.substring(1, phoneNumber!!.length)
-        getOrderService.getOrders(phoneNumber).enqueue(object : Callback<Array<Order>>{
+        getOrderService.getOrdersByID(phoneNumber).enqueue(object : Callback<Array<Order>>{
             override fun onResponse(call: Call<Array<Order>>, response: Response<Array<Order>>) {
                 if(response.isSuccessful) {
                     mArrayList.clear()
                     val arr =  response.body()!!
-                    for(i in 0..arr.lastIndex) {
+                    for(i in arr.lastIndex downTo 0) {
                         mArrayList.add(arr[i])
                     }
+
                     activity_bag_progressBar.visibility = View.GONE
                     activity_bag_recyclerView.visibility = View.VISIBLE
+                    activity_bag_noOrders.visibility = View.GONE
                     activity_bag_recyclerView.layoutManager = LinearLayoutManager(
                         this@BagActivity,
                         LinearLayoutManager.VERTICAL,
                         false
                     )
-                    activity_bag_recyclerView.adapter = BagAdapter(this@BagActivity, this@BagActivity, mArrayList)
+                    activity_bag_recyclerView.adapter = BagAdapter(this@BagActivity, this@BagActivity, phoneNumber, mArrayList)
                 }
             }
 
             override fun onFailure(call: Call<Array<Order>>, t: Throwable) {
-                Constants().generateErrorToast(
-                    this@BagActivity,
-                    this@BagActivity,
-                    "Couldn't connect to server"
-                )
+                activity_bag_noOrders.visibility = View.VISIBLE
                 activity_bag_progressBar.visibility = View.GONE
                 activity_bag_recyclerView.visibility = View.GONE
             }
