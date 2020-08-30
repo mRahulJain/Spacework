@@ -18,7 +18,10 @@ class Constants {
     //Add your IP_ADDRESS there
     //Add this information on your manifest file
 
-    val IP_HOST = "http://192.168.29.193:3000"
+    //BASE URL
+    //val IP_HOST = "http://192.168.29.193:3000"
+    val IP_HOST = "https://app-spacework.herokuapp.com"
+
     val retrofit = Retrofit.Builder()
         .baseUrl(IP_HOST)
         .addConverterFactory(GsonConverterFactory.create())

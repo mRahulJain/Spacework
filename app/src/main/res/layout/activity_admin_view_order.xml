@@ -39,9 +39,12 @@
         android:textSize="16sp"
         android:textStyle="bold"
         android:background="#1566e0"
+        android:alpha="0.7"
+        android:padding="8dp"
         android:gravity="center"
         android:id="@+id/activity_admin_view_order_address"
         android:text="User Address"
+        android:textColor="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <com.google.android.material.tabs.TabLayout

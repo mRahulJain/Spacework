@@ -10,6 +10,7 @@ import retrofit2.http.*
 
 interface API {
 
+    //TARGET
     @POST("/add-product")
     @FormUrlEncoded
     fun addProduct(

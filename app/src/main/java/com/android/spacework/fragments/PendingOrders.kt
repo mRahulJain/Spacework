@@ -52,7 +52,7 @@ class PendingOrders : Fragment() {
                     mArrayList.clear()
                     val arr =  response.body()!!
                     for(i in arr.lastIndex downTo 0) {
-                        if(arr[i]!!.orderStatus == "Order Received") {
+                        if(arr[i]!!.orderStatus == "Order Received" || arr[i]!!.orderHasPaid == "no") {
                             mArrayList.add(arr[i])
                         }
                     }

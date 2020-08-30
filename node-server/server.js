@@ -12,7 +12,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 var mongoClient = mongodb.MongoClient;
 
 //CONNECTION URL
-var url = "mongodb://localhost:27017";
+//var url = "mongodb://localhost:27017";
+var url = "mongodb+srv://user:user@spacework-cluster.uaack.mongodb.net/spacework?retryWrites=true&w=majority";
 
 mongoClient.connect(url, {useNewUrlParser: true}, function(err,client) {
   if(err) {
@@ -451,8 +452,8 @@ mongoClient.connect(url, {useNewUrlParser: true}, function(err,client) {
 
 
     //START WEB SERVER
-    // var port = process.env.PORT || 3000;
-    var port = 3000;
+    var port = process.env.PORT || 3000;
+    //var port = 3000;
     Promise.resolve(app.listen(port)).then(()=>{
       console.log("Connected to mongodb server, web server is running on port 3000");
     });

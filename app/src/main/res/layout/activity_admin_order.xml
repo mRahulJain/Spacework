@@ -24,7 +24,7 @@
         <TextView
             android:textColor="@android:color/white"
             android:layout_gravity="center"
-            android:text="Spacework"
+            android:text="Spacework - Your Clients"
             android:shadowDx="0"
             android:shadowDy="0"
             android:shadowColor="@android:color/black"
@@ -48,9 +48,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <androidx.recyclerview.widget.RecyclerView
+                android:layout_gravity="center"
                 android:visibility="gone"
                 android:id="@+id/activity_admin_order_recyclerView"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"/>
         </FrameLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

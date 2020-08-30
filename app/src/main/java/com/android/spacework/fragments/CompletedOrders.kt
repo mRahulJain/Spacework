@@ -53,7 +53,7 @@ class CompletedOrders : Fragment() {
                     mArrayList.clear()
                     val arr =  response.body()!!
                     for(i in arr.lastIndex downTo 0) {
-                        if(arr[i]!!.orderStatus == "Order Delivered") {
+                        if(arr[i]!!.orderStatus == "Order Delivered" && arr[i]!!.orderHasPaid == "yes") {
                             mArrayList.add(arr[i])
                         }
                     }

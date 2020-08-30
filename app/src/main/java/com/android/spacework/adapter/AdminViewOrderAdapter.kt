@@ -41,6 +41,12 @@ class AdminViewOrderAdapter(val activity: Activity, val context: Context, val us
         holder.itemView.list_item_admin_view_order_hasDelivered.isChecked = orderList[position]!!.orderStatus == "Order Delivered"
         holder.itemView.list_item_admin_view_order_hasPaid.isChecked = orderList[position]!!.orderHasPaid == "yes"
 
+        if(holder.itemView.list_item_admin_view_order_hasDelivered.isChecked &&
+            holder.itemView.list_item_admin_view_order_hasPaid.isChecked) {
+            holder.itemView.list_item_admin_view_order_hasPaid.visibility = View.GONE
+            holder.itemView.list_item_admin_view_order_hasDelivered.visibility = View.GONE
+        }
+
         var orderDetails = ""
         val hashmapString = orderList[position]!!.orderHashmap
         val gson = Gson()
