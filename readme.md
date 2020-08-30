@@ -31,7 +31,7 @@ Admin View Pending and Completed Orders Page -
 <h1>Simple Working</h1>
 <p>
 <br>
-<img src="https://github.com/mRahulJain/Spacework/blob/master/app/videos/sample-working.gif" width="490" height="490"/>
+<img src="https://github.com/mRahulJain/Spacework/blob/master/app/image-video/sample-working.gif" width="490" height="490"/>
 <br><br>
 <h1>Libraries Used</h1>
 <p>
