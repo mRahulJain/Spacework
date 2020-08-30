@@ -12,9 +12,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 var mongoClient = mongodb.MongoClient;
 
 //CONNECTION URL
-//var url = "mongodb://localhost:27017";
-var url = "mongodb+srv://user:user@spacework-cluster.uaack.mongodb.net/spacework?retryWrites=true&w=majority";
-
+var url = "mongodb://localhost:27017";
 mongoClient.connect(url, {useNewUrlParser: true}, function(err,client) {
   if(err) {
     console.log("Unable to connect to the mongodb server. Error: ", err);
